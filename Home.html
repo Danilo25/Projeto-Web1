@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="HomeStyle.css">
+</head>
+<body>
+    <div id="corpo">
+        <div id="loginL">
+            <form id="login">
+                <input type="text" id="user" name="user" placeholder="Usuário"/>
+                <input type="password" id="senha" name="senha" placeholder="senha"/>
+                <button id="confirmar">confirmar</button>
+                <button id="cadastro" onclick="fazerCadastro()">cadastro</button>
+            </form>
+        </div>
+        <div id="cadastroL">
+            <form id="cadastro">
+                <input type="text" id="user" name="user" placeholder="Usuário"/>
+                <input type="password" id="senha" name="senha" placeholder="senha"/>
+                <button id="Cadastrar">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function fazerCadastro() {
+            document.getElementById("cadastroL").style.display = "block";
+            
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: darkgrey;
+    padding-top: 5%;
+}
+div#loginL{
+    width: 250px;
+    height: 250px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+}
+input[type="text"]{
+    font-size: 15px;
+    color: #111;
+    border: none;
+    display: block;
+
+    width: 85%;
+    height: 45px;
+
+    background-color: transparent;
+
+    padding: 0 5px;
+}
+input[type="password"]{
+    font-size: 15px;
+    color: #111;
+    border: none;
+    display: block;
+
+    width: 85%;
+    height: 45px;
+
+    background-color: transparent;
+
+    padding: 0 5px;
+}
+input:focus{
+    outline: none;
+}
+input[type="text"]#user{
+    position: relative;
+    border-bottom: 2px solid black;
+    margin-bottom: 37px;
+}
+input[type="password"]#senha{
+    position: relative;
+    border-bottom: 2px solid black;
+    margin-bottom: 37px;
+}
+button#confirmar{
+    background-color: rgb(96, 161, 246);
+    border: 2px solid black;
+    border-radius: 10%;
+}
+button#cadastro{
+    background-color: rgb(71, 238, 38);
+    border: 2px solid black;
+    border-radius: 10%;
+}
+div#cadastroL{
+    display: none;
+    width: 250px;
+    height: 250px;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+}
