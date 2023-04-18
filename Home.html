@@ -14,19 +14,58 @@
             </form>
         </div>
         <div id="cadastroL">
-            <form id="cadastro">
-                <input type="text" id="user" name="user" placeholder="Usuário"/>
+            <form id="cadastroForm">
+                <input type="text" id="new-user" name="new-user" placeholder="Usuário"/>
                 <input type="password" id="senha" name="senha" placeholder="senha"/>
                 <button id="Cadastrar">Cadastrar</button>
             </form>
         </div>
     </div>
+    <div id="corpo2">
+        //
+    </div>
 
     <script>
         function fazerCadastro() {
+            event.preventDefault();
             document.getElementById("cadastroL").style.display = "block";
+            document.getElementById("loginL").style.display = "none";
             
         }
+        //function ocultarCadastro() {
+        //    event.preventDefault();
+        //    document.getElementById("loginL").style.display = "block";
+        //    document.getElementById("cadastroL").style.display = "none";
+        //    
+        //}
+
+        document.getElementById("cadastroForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+            const newUsername = document.getElementById("new-user").value;
+            console.log(newUsername);
+            
+            // Carregar o conteúdo HTML da página de usuário existente
+            fetch("User.html")
+              .then(response => response.text())
+              .then(data => {
+                console.log(data);
+                console.log(newUsername);
+                // Substituir o nome de usuário no conteúdo HTML
+                const userPageContent = data.replaceAll("{username}", newUsername);
+
+                // Armazenar o conteúdo HTML no armazenamento local do navegador
+                localStorage.setItem(newUsername, userPageContent);
+
+                // Inserir o conteúdo HTML na página
+                document.getElementById("corpo2").innerHTML = userPageContent;
+
+                // Exibir a página de usuário
+                //document.getElementById("login-form").style.display = "none";
+                //document.getElementById("user-page").style.display = "block";
+        });
+      });
+      
     </script>
 </body>
 </html>
