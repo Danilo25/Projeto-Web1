@@ -36,10 +36,6 @@
             </form>
         </div>
     </div>
-    <div id="corpo2">
-        //
-    </div>
-
     <script>
         function fazerCadastro() {
             event.preventDefault();
@@ -57,30 +53,36 @@
         document.getElementById("cadastroForm").addEventListener("submit", function(event) {
         event.preventDefault();
 
+            // cria um objeto JSON
+            const objetoJson = {};
+            
+            // adiciona as informações do formulário ao objeto JSON
+            objetoJson.nome = document.getElementById("new-user").value;
+            objetoJson.email = document.getElementById("new-userEmail").value;
+            objetoJson.ocupacao = document.getElementById("ocupacao").value;
+            
+            // converte o objeto JSON em uma string JSON
+            const jsonString = JSON.stringify(objetoJson);
+            console.log(jsonString);
+
             const newUsername = document.getElementById("new-user").value;
-            console.log(newUsername);
             
             // Carregar o conteúdo HTML da página de usuário existente
             fetch("User.html")
               .then(response => response.text())
               .then(data => {
-                console.log(data);
-                console.log(newUsername);
                 // Substituir o nome de usuário no conteúdo HTML
                 const userPageContent = data.replaceAll("{username}", newUsername);
 
                 // Armazenar o conteúdo HTML no armazenamento local do navegador
                 localStorage.setItem(newUsername, userPageContent);
 
-                // Inserir o conteúdo HTML na página
-                document.getElementById("corpo2").innerHTML = userPageContent;
-
                 // Exibir a página de usuário
                 //document.getElementById("login-form").style.display = "none";
                 //document.getElementById("user-page").style.display = "block";
         });
       });
-      
+
     </script>
 </body>
 </html>

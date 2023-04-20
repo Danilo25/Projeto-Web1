@@ -56,6 +56,7 @@ form#cadastroForm{
     flex-direction: column;
     justify-content: space-around;
 }
+
 label{
     border-bottom: 5px solid transparent;
 }
