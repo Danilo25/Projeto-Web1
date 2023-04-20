@@ -7,16 +7,31 @@
     <div id="corpo">
         <div id="loginL">
             <form id="login">
+                <label for="user"></label>
                 <input type="text" id="user" name="user" placeholder="Usuário"/>
+                <label for="senha"></label>
                 <input type="password" id="senha" name="senha" placeholder="senha"/>
-                <button id="confirmar">confirmar</button>
-                <button id="cadastro" onclick="fazerCadastro()">cadastro</button>
+                <label id="botoes">
+                    <button id="confirmar">confirmar</button>
+                    <button id="cadastro" onclick="fazerCadastro()">cadastro</button>
+                </label>
             </form>
         </div>
         <div id="cadastroL">
             <form id="cadastroForm">
+                <label for="new-user"></label>
                 <input type="text" id="new-user" name="new-user" placeholder="Usuário"/>
-                <input type="password" id="senha" name="senha" placeholder="senha"/>
+                <label for="new-userSenha"></label>
+                <input type="password" id="new-userSenha" name="new-userSenha" placeholder="senha"/>
+                <label for="new-userEmail"></label>
+                <input type="email" id="new-userEmail" name="new-userEmail" placeholder="Email"/>
+                <label for="ocupacao"></label>
+                <select name="ocupacao" id="ocupacao">
+                    <option value="Artista">Artista</option>
+                    <option value="Fotografo">Fotografo</option>
+                    <option value="Museu">Museu</option>
+                </select>
+                <label for="Cadastrar"></label>
                 <button id="Cadastrar">Cadastrar</button>
             </form>
         </div>

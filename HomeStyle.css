@@ -14,7 +14,8 @@ div#loginL{
     align-items: center;
     padding: 25px;
 }
-input[type="text"]{
+
+input{
     font-size: 15px;
     color: #111;
     border: none;
@@ -24,34 +25,12 @@ input[type="text"]{
     height: 45px;
 
     background-color: transparent;
-
-    padding: 0 5px;
-}
-input[type="password"]{
-    font-size: 15px;
-    color: #111;
-    border: none;
-    display: block;
-
-    width: 85%;
-    height: 45px;
-
-    background-color: transparent;
-
-    padding: 0 5px;
+    position: relative;
+    border-bottom: 2px solid black;
+    margin-bottom: 10px;
 }
 input:focus{
     outline: none;
-}
-input[type="text"]#user{
-    position: relative;
-    border-bottom: 2px solid black;
-    margin-bottom: 37px;
-}
-input[type="password"]#senha{
-    position: relative;
-    border-bottom: 2px solid black;
-    margin-bottom: 37px;
 }
 button#confirmar{
     background-color: rgb(96, 161, 246);
@@ -71,4 +50,12 @@ div#cadastroL{
     flex-direction: column;
     align-items: center;
     padding: 25px;
+}
+form#cadastroForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+label{
+    border-bottom: 5px solid transparent;
 }
