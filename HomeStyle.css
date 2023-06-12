@@ -29,9 +29,7 @@ input{
     border-bottom: 2px solid black;
     margin-bottom: 10px;
 }
-input:focus{
-    outline: none;
-}
+c
 button#confirmar{
     background-color: rgb(96, 161, 246);
     border: 2px solid black;
