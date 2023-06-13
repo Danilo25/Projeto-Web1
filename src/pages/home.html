@@ -9,10 +9,39 @@
     </div>
     <div id="bottom">
         <h1>Lista</h1>
+        <div id="adicionar">
+          <img src="../assets/plus2.png" id="plus">
+        </div>
+        <div id="formulario">
+          <form>
+            <label for="user"></label>
+                <input type="text" id="user" name="user" placeholder="Usuário"/>
+                <label for="email"></label>
+                <label id="botoes">
+                    <button id="adicionar" onclick="adiconarTarefa()">adicionar</button>
+                    <button id="sairTarefabtn"">sair</button>
+                </label>
+          </form>
+        </div>
         <ul>
-          <li>item1</li>
-          <li>item2</li>
         </ul>
     </div>
+    <script>
+      const adicionarDiv = document.querySelector("#adicionar");
+      const formularioDiv = document.querySelector("#formulario");
+      const sairTarefabtn = document.querySelector("#sairTarefabtn");
+
+      adicionarDiv.addEventListener("click", function() {
+        formularioDiv.style.display = "block";
+        adicionarDiv.style.display = "none";
+      });
+
+      sairTarefabtn.addEventListener("click", function(event) {
+        event.preventDefault();
+        formularioDiv.style.display = "none";
+        adicionarDiv.style.display = "block";
+      });
+    </script>
+
 </body>
 </html>
