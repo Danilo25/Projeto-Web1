@@ -1,23 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <title>WorksToDo</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Lista de Tarefas</title>
+  <style>
+    /* Estilos CSS existentes */
+
+    .task-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+
+    .task-modal.show {
+      display: block;
+    }
+  </style>
 </head>
 <body>
-    <div id="top">
-    </div>
-    <div id="bottom">
-        <form>
-                <label for="user"></label>
-                <input type="text" id="user" name="user" placeholder="Usuário"/>
-                <label for="senha"></label>
-                <input type="password" id="senha" name="senha" placeholder="senha"/>
-                <label id="botoes">
-                    <button id="confirmar" onclick="Acessar()">confirmar</button>
-                    <button id="cadastro" >cadastro</button>
-                </label>
-        </form>
-    </div>
+  <h1>Lista de Tarefas</h1>
+  
+  <!-- Botão para abrir a tela de adicionar tarefas -->
+  <button id="add-task-button">Adicionar Tarefa</button>
+  
+  <div id="task-modal" class="task-modal">
+    <h2>Adicionar Tarefa</h2>
+    <input type="text" id="task-title-input" placeholder="Título da Tarefa" required>
+    <textarea id="task-desc-input" placeholder="Descrição da Tarefa"></textarea>
+    <button id="add-task">Adicionar</button>
+    <button id="close-modal">Fechar</button>
+  </div>
+  
+  <script>
+    // Código JavaScript existente
+
+    // Função para abrir a tela modal de adição de tarefa
+    function openModal() {
+      var modal = document.getElementById('task-modal');
+      modal.classList.add('show');
+    }
+
+    // Função para fechar a tela modal de adição de tarefa
+    function closeModal() {
+      var modal = document.getElementById('task-modal');
+      modal.classList.remove('show');
+    }
+
+    // Evento de clique no botão "Adicionar Tarefa" para abrir a tela modal
+    document.getElementById('add-task-button').addEventListener('click', function() {
+      openModal();
+    });
+
+    // Evento de clique no botão "Fechar" da tela modal para fechá-la
+    document.getElementById('close-modal').addEventListener('click', function() {
+      closeModal();
+    });
+
+    // Evento de clique no botão "Adicionar" da tela modal para adicionar a tarefa
+    document.getElementById('add-task').addEventListener('click', function() {
+      var taskTitleInput = document.getElementById('task-title-input');
+      var taskDescInput = document.getElementById('task-desc-input');
+      var taskTitle = taskTitleInput.value.trim();
+      var taskDesc = taskDescInput.value.trim();
+
+      if (taskTitle !== '') {
+        tasks.push({ title: taskTitle, desc: taskDesc, completed: false });
+        saveTasks();
+        taskTitleInput.value = '';
+        taskDescInput.value = '';
+        renderTasks();
+        closeModal();
+      }
+    });
+
+    // ...
+  </script>
 </body>
 </html>
