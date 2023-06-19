@@ -16,10 +16,26 @@
                 <label for="senha"></label>
                 <input type="password" id="senha" name="senha" placeholder="senha"/>
                 <label id="botoes">
-                    <button id="confirmar" onclick="fazerCadastro()">confirmar</button>
+                    <button id="confirmar" onclick="cadastrarUsuario()">confirmar</button>
                     <button id="sair">sair</button>
                 </label>
         </form>
     </div>
+    <script>
+        function cadastrarUsuario() {
+            // Obter os valores do formulário
+            var nome = document.getElementById('nome').value;
+            var email = document.getElementById('email').value;
+            var senha = document.getElementById('senha').value;
+          
+            const novoUsuario = {
+                nome,
+                email,
+                senha
+              };
+
+            console.log(novoUsuario);
+          }
+    </script>
 </body>
 </html>

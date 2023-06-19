@@ -8,18 +8,18 @@
     <div id="top">
     </div>
     <div id="bottom">
-        <h1>Lista</h1>
+        <h1 id="lista">Lista</h1>
         <div id="adicionar">
           <img src="../assets/plus2.png" id="plus">
         </div>
         <div id="formulario">
-          <form>
+          <form id="formTarefa">
             <label for="user"></label>
-                <input type="text" id="user" name="user" placeholder="Usuário"/>
-                <label for="email"></label>
+                <input type="text" id="new-tarefa" name="new-tarefa" placeholder="Tarefa"/>
+                <label for="new-tarefa"></label>
                 <label id="botoes">
-                    <button id="adicionar" onclick="adiconarTarefa()">adicionar</button>
-                    <button id="sairTarefabtn"">sair</button>
+                    <button id="adicionarT">adicionar</button>
+                    <button id="sairTarefabtn">sair</button>
                 </label>
           </form>
         </div>
@@ -30,6 +30,7 @@
       const adicionarDiv = document.querySelector("#adicionar");
       const formularioDiv = document.querySelector("#formulario");
       const sairTarefabtn = document.querySelector("#sairTarefabtn");
+      const adicionarTarefa = document.querySelector("#adicionarT");
 
       adicionarDiv.addEventListener("click", function() {
         formularioDiv.style.display = "block";
@@ -37,10 +38,30 @@
       });
 
       sairTarefabtn.addEventListener("click", function(event) {
+        closeNewTarefa();
+      });
+      function closeNewTarefa(){
         event.preventDefault();
         formularioDiv.style.display = "none";
         adicionarDiv.style.display = "block";
-      });
+      }
+
+      adicionarTarefa.addEventListener("click", function(event) {
+        event.preventDefault();
+
+            // cria um objeto JSON
+            const objetoJson = {};
+            const tarefasJSON = {};
+            
+            // adiciona as informações do formulário ao objeto JSON
+            objetoJson.tarefa = document.getElementById("new-tarefa").value;
+            
+            // converte o objeto JSON em uma string JSON
+            const jsonString = JSON.stringify(objetoJson);
+            console.log(jsonString);
+
+            closeNewTarefa();
+        });
     </script>
 
 </body>
