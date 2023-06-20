@@ -4,157 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Tarefas</title>
-    <style>
-        /* Estilos CSS existentes */
-
-        .completed {
-            text-decoration: line-through;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 20px;
-            border: 1px solid #ccc;
-        }
-
-        .modal.show {
-            display: block;
-        }
-    </style>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
     <h1>Lista de Tarefas</h1>
 
-    <form id="task-form">
+    <button id="add-task-btn">Adicionar Tarefa</button>
+
+    <!--<form id="task-form">
         <input type="text" id="task-input" placeholder="Adicionar nova tarefa" required>
         <button type="submit">Adicionar</button>
-    </form>
+    </form>-->
+    <div id="add-task-modal" class="modal">
+        <h2>Adicionar Tarefa</h2>
+        <input type="text" id="new-task-input" placeholder="Digite a nova tarefa" required>
+        <textarea id="new-task-description" placeholder="Digite a descrição da tarefa (limite de 150 caracteres)"
+            maxlength="150"></textarea>
+        <p id="description-limit">Caracteres restantes: 150</p>
+        <button id="save-task-btn">Salvar</button>
+        <button id="cancel-task-btn">Cancelar</button>
+    </div>
 
     <ul id="task-list"></ul>
 
     <div id="modal" class="modal">
         <h2 id="task-title">Opções da Tarefa</h2>
+        <p id="task-description"></p>
         <button id="delete-task">Excluir</button>
         <button id="complete-task">Concluir</button>
         <button id="close-task">X</button>
     </div>
 
-    <script>
-        // Carregar as tarefas existentes do arquivo JSON
-        var tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
-
-        // Variáveis para a manipulação da tela modal
-        var modal = document.getElementById('modal');
-        var titleT = document.getElementById('task-title');
-        var deleteTaskBtn = document.getElementById('delete-task');
-        var completeTaskBtn = document.getElementById('complete-task');
-        var closeTaskBtn = document.getElementById('close-task');
-        var selectedTaskIndex = -1; // Índice da tarefa selecionada
-
-        // Função para atualizar a exibição das tarefas na página
-        function renderTasks() {
-            var taskList = document.getElementById('task-list');
-            taskList.innerHTML = '';
-
-            tasks.forEach(function (task, index) {
-                var taskItem = document.createElement('li');
-                var taskText = document.createElement('span');
-                taskText.innerText = task.text;
-
-                // Marcar como concluída
-                if (task.completed) {
-                    taskText.classList.add('completed');
-                }
-
-                // Abrir a tela modal ao clicar na tarefa
-                taskText.addEventListener('click', function () {
-                    if (!modal.classList.contains('show')) {
-                        selectedTaskIndex = index; // Atualiza o índice da tarefa selecionada
-                        openModal();
-                    }
-                });
-
-                taskItem.appendChild(taskText);
-                taskList.appendChild(taskItem);
-            });
-        }
-
-        // Função para abrir a tela modal
-        function openModal() {
-            if (selectedTaskIndex !== -1) {
-                var task = tasks[selectedTaskIndex];
-                modal.classList.add('show');
-                titleT.innerHTML = task.text;
-            }
-
-            // Verificar se a tarefa está concluída
-        if (task.completed) {
-            completeTaskBtn.textContent = 'Desmarcar';
-        } else {
-            completeTaskBtn.textContent = 'Concluir';
-        }
-        }
-
-        // Função para fechar a tela modal
-        function closeModal() {
-            modal.classList.remove('show');
-            selectedTaskIndex = -1; // Limpa o índice da tarefa selecionada
-        }
-
-        // Ação de excluir tarefa
-        deleteTaskBtn.addEventListener('click', function () {
-            if (selectedTaskIndex !== -1) {
-                tasks.splice(selectedTaskIndex, 1);
-                saveTasks();
-                renderTasks();
-                closeModal();
-            }
-        });
-
-        // Ação de marcar ou desmarcar tarefa como concluída
-        completeTaskBtn.addEventListener('click', function () {
-            if (selectedTaskIndex !== -1) {
-                var task = tasks[selectedTaskIndex];
-                task.completed = !task.completed;
-                saveTasks();
-                renderTasks();
-                closeModal();
-            }
-        });
-
-        // Ação de fechar a tela modal
-        closeTaskBtn.addEventListener('click', function () {
-            closeModal();
-        });
-
-        // Função para adicionar uma nova tarefa
-        document.getElementById('task-form').addEventListener('submit', function (event) {
-            event.preventDefault();
-            var taskInput = document.getElementById('task-input');
-            var taskText = taskInput.value.trim();
-
-            if (taskText !== '') {
-                tasks.push({ text: taskText, completed: false });
-                saveTasks();
-                taskInput.value = '';
-                renderTasks();
-            }
-        });
-
-        // Função para salvar as tarefas no arquivo JSON
-        function saveTasks() {
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-        }
-
-        // Renderizar as tarefas na página ao carregar
-        renderTasks();
-    </script>
+    
 </body>
 
 </html>
