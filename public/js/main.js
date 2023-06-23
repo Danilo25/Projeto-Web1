@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Carregar as tarefas existentes do arquivo JSON
-  var tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
+  var tasks = [];
 
   // Variáveis para a manipulação da tela modal
   var addTaskModal = document.getElementById('add-task-modal');
@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var taskDescription = document.getElementById('task-description');
 
   var addTaskBtn = document.getElementById('add-task-btn');
+
   var saveTaskBtn = document.getElementById('save-task-btn');
   var closeAddTaskBtn = document.getElementById('cancel-task-btn');
 
@@ -47,9 +48,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Carregar as tarefas existentes do arquivo JSON
+  fetch('/api/tasks/file')
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      tasks = data;
+      renderTasks(); // Exibe as tarefas na página
+    })
+    .catch(function (error) {
+      console.log('Erro ao obter as tarefas do arquivo:', error);
+    });
+
   // Abrir tela de adicionar tarefas
   function openAddTaskModal() {
+    if(!modal.classList.contains('show')){
     addTaskModal.classList.add('show');
+    addTaskBtn.style.visibility = 'hidden';
+  }
 
     var descriptionInput = document.getElementById('new-task-description');
     var descriptionLimit = document.getElementById('description-limit');
@@ -63,16 +80,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  saveTaskBtn.addEventListener('click', function () {
+  saveTaskBtn.addEventListener('click', function (event) {
+    event.preventDefault();
     addTask();
   });
-  closeAddTaskBtn.addEventListener('click', function () {
+
+  closeAddTaskBtn.addEventListener('click', function (event) {
+    event.preventDefault();
     addTaskModal.classList.remove('show');
+    addTaskBtn.style.visibility = 'visible';
   });
 
   // Função para fechar a tela de adicionar tarefas
   function closeAddTaskModal() {
     addTaskModal.classList.remove('show');
+    addTaskBtn.style.visibility = 'visible';
   }
 
   // Evento de clique no botão "Adicionar Tarefa"
@@ -82,9 +104,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Função para abrir a tela modal
   function openModal() {
-    if (selectedTaskIndex !== -1) {
+    if (selectedTaskIndex !== -1 && !addTaskModal.classList.contains('show')) {
       var task = tasks[selectedTaskIndex];
       modal.classList.add('show');
+      addTaskBtn.classList.add('disable-hover');
       titleT.innerHTML = task.text;
       taskDescription.innerHTML = task.description;
     }
@@ -100,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Função para fechar a tela modal
   function closeModal() {
     modal.classList.remove('show');
+    addTaskBtn.classList.remove('disable-hover');
     selectedTaskIndex = -1; // Limpa o índice da tarefa selecionada
   }
 

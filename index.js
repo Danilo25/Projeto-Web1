@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var multer = require('multer');
+var fs = require('fs');
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -15,10 +16,35 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-var tasks = []; // Array para armazenar as tarefas
-var taskIdCounter = 1; // Contador incremental para gerar IDs
+var tasksFile = 'tarefas.json'; // Nome do arquivo JSON para armazenar as tarefas
+
+// Função para ler as tarefas do arquivo JSON
+function readTasksFromFile() {
+  try {
+    var data = fs.readFileSync(tasksFile, 'utf8');
+    return JSON.parse(data);
+  } catch (err) {
+    console.log('Erro ao ler o arquivo de tarefas:', err);
+    return [];
+  }
+}
+
+// Função para salvar as tarefas no arquivo JSON
+function saveTasksToFile(tasks) {
+  try {
+    var data = JSON.stringify(tasks);
+    fs.writeFileSync(tasksFile, data, 'utf8');
+    console.log('Tarefas salvas no arquivo com sucesso!');
+  } catch (err) {
+    console.log('Erro ao salvar as tarefas no arquivo:', err);
+  }
+}
+
+var tasks = readTasksFromFile(); // Carrega as tarefas do arquivo JSON
+var taskIdCounter = tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1; // Obtém o próximo ID com base nas tarefas existentes
 
 app.get('/', function (req, res) {
+  var tasksFromFile = readTasksFromFile(); // Lê as tarefas do arquivo JSON
   res.sendFile(__dirname + '/public/tarefas.html');
 });
 
@@ -38,6 +64,7 @@ app.post('/api/tasks', function (req, res) {
     completed: false
   };
   tasks.push(task);
+  saveTasksToFile(tasks); // Salva as tarefas no arquivo JSON
   res.json(task);
 });
 
@@ -49,6 +76,7 @@ app.delete('/api/tasks/:id', function (req, res) {
   });
   if (index !== -1) {
     var deletedTask = tasks.splice(index, 1);
+    saveTasksToFile(tasks); // Salva as tarefas no arquivo JSON
     res.json(deletedTask);
   } else {
     res.sendStatus(404);
@@ -64,9 +92,21 @@ app.put('/api/tasks/:id', function (req, res) {
   });
   if (task) {
     task.completed = completed;
+    saveTasksToFile(tasks); // Salva as tarefas no arquivo JSON
     res.json(task);
   } else {
     res.sendStatus(404);
+  }
+});
+// Rota para visualizar o conteúdo do arquivo tarefas.json
+app.get('/api/tasks/file', function (req, res) {
+  try {
+    var data = fs.readFileSync(tasksFile, 'utf8');
+    var tasksFromFile = JSON.parse(data);
+    res.json(tasksFromFile);
+  } catch (err) {
+    console.log('Erro ao ler o arquivo de tarefas:', err);
+    res.sendStatus(500);
   }
 });
 

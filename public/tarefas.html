@@ -9,35 +9,38 @@
 </head>
 
 <body>
-    <h1>Lista de Tarefas</h1>
+    <div id="top">
+        Lista de Tarefas
+    </div>
+    <div id="bottom">
+        <div id="add-task-btn">
+            <img src="../assets/plus2.png" id="plus">
+        </div>
+        
+        <div id="add-task-modal" class="modal">
+            <form>
+                <h2>Adicionar Tarefa</h2>
+                <input type="text" id="new-task-input" placeholder="Digite a nova tarefa" required>
+                <textarea id="new-task-description"
+                    placeholder="Digite a descrição da tarefa (limite de 150 caracteres)" maxlength="150"></textarea>
+                <p id="description-limit">Caracteres restantes: 150</p>
+                <button id="save-task-btn">Salvar</button>
+                <button id="cancel-task-btn">Cancelar</button>
+            </form>
+        </div>
 
-    <button id="add-task-btn">Adicionar Tarefa</button>
+        <ul id="task-list"></ul>
 
-    <!--<form id="task-form">
-        <input type="text" id="task-input" placeholder="Adicionar nova tarefa" required>
-        <button type="submit">Adicionar</button>
-    </form>-->
-    <div id="add-task-modal" class="modal">
-        <h2>Adicionar Tarefa</h2>
-        <input type="text" id="new-task-input" placeholder="Digite a nova tarefa" required>
-        <textarea id="new-task-description" placeholder="Digite a descrição da tarefa (limite de 150 caracteres)"
-            maxlength="150"></textarea>
-        <p id="description-limit">Caracteres restantes: 150</p>
-        <button id="save-task-btn">Salvar</button>
-        <button id="cancel-task-btn">Cancelar</button>
+        <div id="modal" class="modal">
+            <h2 id="task-title">Opções da Tarefa</h2>
+            <p id="task-description"></p>
+            <button id="delete-task">Excluir</button>
+            <button id="complete-task">Concluir</button>
+            <button id="close-task">X</button>
+        </div>
     </div>
 
-    <ul id="task-list"></ul>
 
-    <div id="modal" class="modal">
-        <h2 id="task-title">Opções da Tarefa</h2>
-        <p id="task-description"></p>
-        <button id="delete-task">Excluir</button>
-        <button id="complete-task">Concluir</button>
-        <button id="close-task">X</button>
-    </div>
-
-    
 </body>
 
 </html>

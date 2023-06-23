@@ -1,5 +1,80 @@
 /* Estilos CSS existentes */
+html{
+  min-height: 100%;
+}
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0fff0;
+}
+div#top{
+  height: 45px;
+  width: 100%;
+  background-color: #000000;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 40px;
+}
 
+div#bottom{
+  position: fixed;
+  top: 100px;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+.disable-hover {
+  pointer-events: none;
+  cursor: default;
+}
+
+//animação do botão
+div#add-task-btn{
+  position: fixed;
+  overflow: hidden;
+  flex-grow:1
+}
+div#add-task-btn::after{
+  content: "";
+  position: absolute;
+  bottom: 96%;
+  left: 53%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+div#add-task-btn:hover::after{
+  width: 8%;
+}
+img#plus{
+  position: relative;
+  transition: transform 0.3s ease;
+}
+div#add-task-btn:hover img {
+  transform: translateX(-30px) rotateZ(-90deg);
+}
+
+ul#task-list{
+  flex-grow: 9;
+  width: 300px;
+}
+#task-list li {
+  position: relative;
+  text-align: justify;
+  
+  font-size: 20px
+}
 .completed {
   text-decoration: line-through;
 }
@@ -13,11 +88,40 @@
   background-color: #fff;
   padding: 20px;
   border: 1px solid #ccc;
-  max-width: 80%;
-  max-height: 80%;
   overflow: auto;
 }
 
 .modal.show {
   display: block;
+  flex-direction: row;
+}
+#add-task-modal{
+  width: 350px;
+  height: 300px;
+  border: solid black 2px;
+  background-color: #c0c0c0;
+  border-radius: 15px;
+}
+
+#add-task-modal > form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+#add-task-modal > form > input{
+	width: 80%;
+	margin: 0 auto;
+	padding: 10px;
+	border: none;
+	margin-bottom: 10px;
+	border-radius: 50px;
+}
+#add-task-modal > form > textarea{
+  width: 85%;
+  height: 40%;
+  border: none;
+  border-radius: 15px;
+  resize: none;
+  padding: 5px;
 }
