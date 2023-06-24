@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Variáveis para a manipulação da tela modal
   var addTaskModal = document.getElementById('add-task-modal');
-  var modal = document.getElementById('modal');
+  var taskmodal = document.getElementById('task-modal');
 
   var titleT = document.getElementById('task-title');
   var taskDescription = document.getElementById('task-description');
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Abrir a tela modal ao clicar na tarefa
       taskText.addEventListener('click', function () {
-        if (!modal.classList.contains('show')) {
+        if (!taskmodal.classList.contains('show')) {
           selectedTaskIndex = index; // Atualiza o índice da tarefa selecionada
           openModal();
         }
@@ -63,9 +63,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Abrir tela de adicionar tarefas
   function openAddTaskModal() {
-    if(!modal.classList.contains('show')){
+    if(!taskmodal.classList.contains('show')){
     addTaskModal.classList.add('show');
     addTaskBtn.style.visibility = 'hidden';
+    addTaskBtn.classList.add('disable-hover');
   }
 
     var descriptionInput = document.getElementById('new-task-description');
@@ -89,12 +90,14 @@ document.addEventListener('DOMContentLoaded', function () {
     event.preventDefault();
     addTaskModal.classList.remove('show');
     addTaskBtn.style.visibility = 'visible';
+    addTaskBtn.classList.remove('disable-hover');
   });
 
   // Função para fechar a tela de adicionar tarefas
   function closeAddTaskModal() {
     addTaskModal.classList.remove('show');
     addTaskBtn.style.visibility = 'visible';
+    addTaskBtn.classList.remove('disable-hover');
   }
 
   // Evento de clique no botão "Adicionar Tarefa"
@@ -106,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function openModal() {
     if (selectedTaskIndex !== -1 && !addTaskModal.classList.contains('show')) {
       var task = tasks[selectedTaskIndex];
-      modal.classList.add('show');
+      taskmodal.classList.add('show');
       addTaskBtn.classList.add('disable-hover');
       titleT.innerHTML = task.text;
       taskDescription.innerHTML = task.description;
@@ -122,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Função para fechar a tela modal
   function closeModal() {
-    modal.classList.remove('show');
+    taskmodal.classList.remove('show');
     addTaskBtn.classList.remove('disable-hover');
     selectedTaskIndex = -1; // Limpa o índice da tarefa selecionada
   }

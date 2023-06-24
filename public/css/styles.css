@@ -101,6 +101,7 @@ ul#task-list{
   border: solid black 2px;
   background-color: #c0c0c0;
   border-radius: 15px;
+  z-index: 2;
 }
 
 #add-task-modal > form{
@@ -124,4 +125,35 @@ ul#task-list{
   border-radius: 15px;
   resize: none;
   padding: 5px;
+}
+div#add-task-btns{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+button{
+  border: none;
+  border-radius: 15px;
+  font-size: 15px;
+}
+
+#task-modal{
+  border: solid black 2px;
+  background-color: #c0c0c0;
+  border-radius: 15px;
+  z-index: 3;
+}
+#close-task{
+  background-color: 	#B22222;
+}
+#task-modal-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+  gap: 5%;
+}
+button:hover{
+  transform: scale(1.2);
 }
