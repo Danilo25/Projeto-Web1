@@ -74,6 +74,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var caracteres = 150 - descriptionInput.value.length;
     descriptionLimit.textContent = 'Caracteres restantes: ' + caracteres;
 
+    descriptionInput.value = '';
+
     // Evento de input para atualizar o contador de caracteres
     descriptionInput.addEventListener('input', function () {
       var caracteres = 150 - descriptionInput.value.length;
