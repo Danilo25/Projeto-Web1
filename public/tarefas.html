@@ -12,6 +12,7 @@
     <div id="top">
         Lista de Tarefas
     </div>
+
     <div id="bottom">
         <div id="add-task-btn">
             <img src="../assets/plus2.png" id="plus">
@@ -20,10 +21,15 @@
         <div id="add-task-modal" class="modal">
             <form>
                 <h2>Adicionar Tarefa</h2>
+
                 <input type="text" id="new-task-input" placeholder="Digite a nova tarefa" required>
+                
                 <textarea id="new-task-description"
-                    placeholder="Digite a descrição da tarefa (limite de 150 caracteres)" maxlength="150"></textarea>
+                    placeholder="Digite a descrição da tarefa (limite de 150 caracteres)" maxlength="150">
+                </textarea>
+
                 <p id="description-limit">Caracteres restantes: 150</p>
+                
                 <div id="add-task-btns">
                     <button id="save-task-btn">Salvar</button>
                     <button id="cancel-task-btn">Cancelar</button>
@@ -34,8 +40,10 @@
         <ul id="task-list"></ul>
 
         <div id="task-modal" class="modal">
-            <h1 id="task-title">Opções da Tarefa</h1>
+            <h2 id="task-title">Opções da Tarefa</h2>
+
             <p id="task-description"></p>
+            
             <div id="task-modal-btns">
                 <button id="delete-task">Excluir</button>
                 <button id="complete-task">Concluir</button>
@@ -43,8 +51,5 @@
             </div>
         </div>
     </div>
-
-
 </body>
-
 </html>

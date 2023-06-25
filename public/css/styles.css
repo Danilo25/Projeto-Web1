@@ -1,7 +1,4 @@
 /* Estilos CSS existentes */
-html{
-  min-height: 100%;
-}
 body{
   display: flex;
   flex-direction: column;
