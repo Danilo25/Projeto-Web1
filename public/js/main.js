@@ -63,22 +63,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Abrir tela de adicionar tarefas
   function openAddTaskModal() {
-    if(!taskmodal.classList.contains('show')){
-    addTaskModal.classList.add('show');
-    addTaskBtn.style.visibility = 'hidden';
-    addTaskBtn.classList.add('disable-hover');
-  }
+    if (!taskmodal.classList.contains('show')) {
+      addTaskModal.classList.add('show');
+      addTaskBtn.style.visibility = 'hidden';
+      addTaskBtn.classList.add('disable-hover');
+    }
 
     var descriptionInput = document.getElementById('new-task-description');
     var descriptionLimit = document.getElementById('description-limit');
-    var caracteres = 150 - descriptionInput.value.length;
+    var caracteres = descriptionInput.value.length;
+
     descriptionLimit.textContent = 'Caracteres restantes: ' + caracteres;
 
-    descriptionInput.value = '';
+
 
     // Evento de input para atualizar o contador de caracteres
     descriptionInput.addEventListener('input', function () {
-      var caracteres = 150 - descriptionInput.value.length;
+      caracteres = 150 - descriptionInput.value.length;
       descriptionLimit.textContent = 'Caracteres restantes: ' + caracteres;
     });
   }
